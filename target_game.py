@@ -61,8 +61,23 @@ def get_pure_user_words(user_words: List[str], letters: List[str], words_from_di
     Checks user words with the rules and returns list of those words
     that are not in dictionary.
     """
-    pass
-
+    central_letter = letters[4]
+    output = []
+    counter = 0
+    for k in len(user_words):
+        if user_words[k] not in words_from_dict:
+            if len(user_words[k]) >= 4 and len(user_words[k]) <= 9 and user_words[k].find(central_letter) != -1:
+                user_words[k] = user_words[k].lower()
+                copy = letters.copy()
+                for j in range(len(user_words[k])):  
+                    if user_words[k][j] in copy:
+                        index = copy.index(user_words[k][j])
+                        copy[index] = ""
+                        counter = counter + 1
+                    if counter == len(user_words[k]):
+                        output.append(user_words[k])
+                counter = 0
+    return output
 
 def results():
     pass
