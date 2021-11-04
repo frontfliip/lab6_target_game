@@ -1,0 +1,1 @@
+# lab6_target_game
