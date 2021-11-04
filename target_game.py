@@ -64,7 +64,7 @@ def get_pure_user_words(user_words: List[str], letters: List[str], words_from_di
     central_letter = letters[4]
     output = []
     counter = 0
-    for k in len(user_words):
+    for k in range (len(user_words)):
         if user_words[k] not in words_from_dict:
             if len(user_words[k]) >= 4 and len(user_words[k]) <= 9 and user_words[k].find(central_letter) != -1:
                 user_words[k] = user_words[k].lower()
@@ -80,4 +80,24 @@ def get_pure_user_words(user_words: List[str], letters: List[str], words_from_di
     return output
 
 def results():
-    pass
+    letters = generate_grid()
+    for i in range(len(letters)):
+        print (letters[i])
+    letters_1 = []
+    for elements in letters:
+        for ele in elements:
+            letters_1.append(ele)
+    user_words = get_user_words()
+    all_words = get_words("en.txt", letters_1)
+    pure_words = get_pure_user_words(user_words, letters_1, all_words)
+    print(all_words)
+    print(user_words)
+    print(pure_words)
+    with open('result.txt', 'w') as output_file:
+        output_file.write(",".join(all_words))
+        output_file.write("\n")
+        output_file.write(",".join(user_words))
+        output_file.write("\n")
+        output_file.write(",".join(pure_words))
+        output_file.write("\n")
+    
