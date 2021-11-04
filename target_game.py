@@ -36,30 +36,28 @@ def get_words(f: str, letters: List[str]) -> List[str]:
                     if counter == len(lines[i]):
                         output.append(lines[i])
                 counter = 0
+    return output
 
-    
-    
-    
-    
-    
-    
-    # letters = " ".join(letters) 
-    # print (letters)
-
-get_words("./en.txt", ['i', 'g', 'e', 'p', 'i', 's', 'w', 'm', 'g'])
 
 def get_user_words() -> List[str]:
     """
     Gets words from user input and returns a list with these words.
     Usage: enter a word or press ctrl+d to finish.
     """
-    pass
+    output = []
+    while True:
+        try:
+            answer = input()
+            output.append(answer)
+        except EOFError:
+            break
+    return output
 
 
 def get_pure_user_words(user_words: List[str], letters: List[str], words_from_dict: List[str]) -> List[str]:
     """
     (list, list, list) -> list
-
+ 
     Checks user words with the rules and returns list of those words
     that are not in dictionary.
     """
